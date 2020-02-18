@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  wordpress:
+    images: wordpress:latest
+    links:
+     - db:mysql
+    networks:
+     mynet:
+    volumes:
+     - wp-vol:/var/www/html
+    depends_on:
+     - db
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+    networks:
+     mynet:
+      ipv4_address: 172.20.0.2
+    volumes:
+      - mysql-vol:/var/lib/mysql
+volumes:
+  wp-vol:
+    driver_opts:
+      type: none
+      device: /data/html
+      o: bind
+    mysql-vol:
+      driver_opts:
+        type: none
+        device: /data/mysql
+        o: bind
+networks:
+  mynet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 172.20.0.0/24
