@@ -3,13 +3,13 @@ services:
   wordpress:
     image: wordpress:latest
     links:
-     - db:mysql
+      - db:mysql
     networks:
      mynet:
     volumes:
-     - wp-vol:/var/www/html
+      - wp-vol:/var/www/html
     depends_on:
-     - db
+      - db
   db:
     image: mariadb:latest
     environment:
