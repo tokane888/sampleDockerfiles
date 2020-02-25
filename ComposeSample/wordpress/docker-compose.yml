@@ -1,4 +1,8 @@
 version: '3.7'
+# 共通変数サンプル。本来は1箇所でしか使わない場合は直接service配下に記載
+x-common:
+  &db-setting
+  MYSQL_ROOT_PASSWORD: password123
 services:
   wordpress:
     image: wordpress:latest
@@ -12,8 +16,7 @@ services:
       - db
   db:
     image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: password123
+    environment: *db-setting
     networks:
       mynet:
         ipv4_address: 172.20.0.2
