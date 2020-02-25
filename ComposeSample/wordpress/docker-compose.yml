@@ -9,7 +9,7 @@ services:
     links:
       - db:mysql
     networks:
-     mynet:
+      mynet:
     volumes:
       - wp-vol:/var/www/html
     depends_on:
