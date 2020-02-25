@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   wordpress:
-    images: wordpress:latest
+    image: wordpress:latest
     links:
      - db:mysql
     networks:
@@ -15,8 +15,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password123
     networks:
-     mynet:
-      ipv4_address: 172.20.0.2
+      mynet:
+        ipv4_address: 172.20.0.2
     volumes:
       - mysql-vol:/var/lib/mysql
 volumes:
@@ -25,11 +25,11 @@ volumes:
       type: none
       device: /data/html
       o: bind
-    mysql-vol:
-      driver_opts:
-        type: none
-        device: /data/mysql
-        o: bind
+  mysql-vol:
+    driver_opts:
+      type: none
+      device: /data/mysql
+      o: bind
 networks:
   mynet:
     driver: bridge
