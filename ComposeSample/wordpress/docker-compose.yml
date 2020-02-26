@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.5'
 # 共通変数サンプル。本来は1箇所でしか使わない場合は直接service配下に記載
 x-common:
   &db-setting
